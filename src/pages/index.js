@@ -17,7 +17,7 @@ export default function Home() {
       <main className={`${styles.main} ${inter.className}`}>
         <div className={styles.description}>
           <p>
-            Get started by editing kippexe
+            Get started by editing drippexe
             <code className={styles.code}>src/pages/index.js</code>
           </p>
           <div>
