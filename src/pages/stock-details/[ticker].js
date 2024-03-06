@@ -23,7 +23,23 @@ export default function StockDetails({companyOverview,stockPriceHistory}) {
     console.log(stockPriceHistory);
 
 const router = useRouter()
-console.log(router.query.ticker);
+const {ticker} = router.query;
+
+return (
+  <div>
+    <h1>Stock Details for {ticker} </h1>
+
+    <h2>companyOverview</h2>
+    <pre>{JSON.stringify(companyOverview, null, 2)}</pre>
+
+    <h2>stockPriceHistory</h2>
+    <pre>{JSON.stringify(stockPriceHistory, null, 2)}</pre>
+
+
+
+  </div>
+)
+
 
 
 
