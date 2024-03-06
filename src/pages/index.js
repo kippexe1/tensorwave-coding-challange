@@ -7,8 +7,10 @@ export default function Home() {
 
 return tickers.map((ticker)=>{
   return ( 
-   <a href={`/stock-details/${ticker}`}> <p>{ticker}</p></a>
+
+<a href={`/stock-details/${ticker}`}> <p>{ticker}</p></a>
     );
 })
 
 }
+

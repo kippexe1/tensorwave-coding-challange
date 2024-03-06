@@ -16,6 +16,7 @@ console.log("sb",context.params.ticker)
     // Pass data to the page via props
     
     return { props: { companyOverview,stockPriceHistory } }
+
   }
 
 export default function StockDetails({companyOverview,stockPriceHistory}) {
@@ -35,17 +36,8 @@ return (
     <h2>stockPriceHistory</h2>
     <pre>{JSON.stringify(stockPriceHistory, null, 2)}</pre>
 
-
-
-  </div>
-)
-
-
-
+    <h2>Stock Price History</h2>
+  <div>
 
   return(
-    <p>{router.query.ticker}</p>
-)
-
-
-}
+      <p>{router.query.ticker}</p> )
