@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { object } from 'prop-types';
 
 export async function getServerSideProps(context) {
   // Fetch data from external API
@@ -35,6 +36,27 @@ export default function StockDetails({ companyOverview, stockPriceHistory }) {
   });
 
   //calculate, map through, time series data valueable, +1 , -1 = array
+
+  for (let i = 0; i < timeSeriesData.length - 1; i++) {
+    const currentClose = parseFloat(timeSeriesData[i].close);
+    const previousClose = parseFloat(timeSeriesData[i + 1].close);
+    const percentChangeClose = ((currentClose - previousClose) / previousClose) * 100;
+
+    const currentVolume = parseInt(timeSeriesData[i].volume);
+    const previousVolume = parseInt(timeSeriesData[i + 1].volume);
+    const percentChangeVolume = ((currentVolume - previousVolume) / previousVolume) * 100;
+
+    console.log(
+      `Percent change in close price from ${timeSeriesData[i].date} to ${
+        timeSeriesData[i + 1].date
+      }: ${percentChangeClose.toFixed(2)}%`,
+    );
+    console.log(
+      `Percent change in volume from ${timeSeriesData[i].date} to ${
+        timeSeriesData[i + 1].date
+      }: ${percentChangeVolume.toFixed(2)}%`,
+    );
+  }
 
   return (
     <div>
