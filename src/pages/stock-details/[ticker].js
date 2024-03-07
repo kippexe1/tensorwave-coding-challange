@@ -1,43 +1,60 @@
-import { useRouter } from "next/router"
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps(context) {
-    
-    // Fetch data from external API
+  // Fetch data from external API
 
-console.log("sb",context.params.ticker)
-    
-    const companyResponse = await fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${context.params.ticker}&apikey=JTRQZDDNXAOLX046`)
-    const companyOverview = await companyResponse.json()
-    
-    const stockHistoryResponse = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${context.params.ticker}&outputsize=full&apikey=JTRQZDDNXAOLX046`)
-    const stockPriceHistory = await stockHistoryResponse.json()
-    
-    
-    // Pass data to the page via props
-    
-    return { props: { companyOverview,stockPriceHistory } }
+  console.log('sb', context.params.ticker);
 
-  }
+  const companyResponse = await fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo`);
+  const companyOverview = await companyResponse.json();
 
-export default function StockDetails({companyOverview,stockPriceHistory}) {
-    console.log(companyOverview)
-    console.log(stockPriceHistory);
+  const stockHistoryResponse = await fetch(
+    `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&outputsize=full&apikey=demo`,
+  );
+  const stockPriceHistory = await stockHistoryResponse.json();
+  // ${context.params.ticker}
 
-const router = useRouter()
-const {ticker} = router.query;
+  // Pass data to the page via props
 
-return (
-  <div>
-    <h1>Stock Details for {ticker} </h1>
+  return { props: { companyOverview, stockPriceHistory } };
+}
 
-    <h2>companyOverview</h2>
-    <pre>{JSON.stringify(companyOverview, null, 2)}</pre>
+export default function StockDetails({ companyOverview, stockPriceHistory }) {
+  console.log(companyOverview);
+  console.log(stockPriceHistory);
 
-    <h2>stockPriceHistory</h2>
-    <pre>{JSON.stringify(stockPriceHistory, null, 2)}</pre>
+  const router = useRouter();
+  const { ticker } = router.query;
+  let timeSeriesData = stockPriceHistory['Time Series (Daily)'];
+  timeSeriesData = Object.keys(timeSeriesData).map((date) => {
+    return {
+      date: date,
+      close: timeSeriesData[date]['4. close'],
+      volume: timeSeriesData[date]['5. volume'],
+    };
+  });
 
-    <h2>Stock Price History</h2>
-  <div>
+  //calculate, map through, time series data valueable, +1 , -1 = array
 
-  return(
-      <p>{router.query.ticker}</p> )
+  return (
+    <div>
+      <h1>Stock Details for {ticker} </h1>
+      <h2>Company Overview</h2>
+      <p>Company Overview: {companyOverview.Description}</p>
+      <p>{companyOverview.Symbol}</p>
+      <p>{companyOverview.AssetType}</p>
+      <p>{companyOverview.Exchange}</p>
+      <p>{companyOverview.Sector}</p>
+      <p>{companyOverview.Industry}</p>
+      <p>{companyOverview.MarketCapitalization}</p>
+      <h2>Stock Price History</h2>
+      <pre>{JSON.stringify(timeSeriesData, null, 3)}</pre>
+    </div>
+  );
+}
+
+// Show the company symbol, asset type, name, description, exchange,
+// sector, industry and market capitalization. If any of this information is not
+// available then display “N/A” instead
+// For each historical price item show the following: date, close price, volume
+// and percentage change in price from the previous day
