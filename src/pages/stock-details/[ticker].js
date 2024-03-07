@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
-import { object } from 'prop-types';
+import styles from './[ticker].module.css'
+
 
 export async function getServerSideProps(context) {
-  // Fetch data from external API
+  // Fetch data from external APIpmp
 
   console.log('sb', context.params.ticker);
 
@@ -32,8 +33,11 @@ export default function StockDetails({ companyOverview, stockPriceHistory }) {
       date: date,
       close: timeSeriesData[date]['4. close'],
       volume: timeSeriesData[date]['5. volume'],
+    
     };
   });
+
+
 
   //calculate, map through, time series data valueable, +1 , -1 = array
 
@@ -42,33 +46,31 @@ export default function StockDetails({ companyOverview, stockPriceHistory }) {
     const previousClose = parseFloat(timeSeriesData[i + 1].close);
     const percentChangeClose = ((currentClose - previousClose) / previousClose) * 100;
 
-    const currentVolume = parseInt(timeSeriesData[i].volume);
-    const previousVolume = parseInt(timeSeriesData[i + 1].volume);
-    const percentChangeVolume = ((currentVolume - previousVolume) / previousVolume) * 100;
+  timeSeriesData[i].percentChangeClose=percentChangeClose  
 
     console.log(
       `Percent change in close price from ${timeSeriesData[i].date} to ${
         timeSeriesData[i + 1].date
       }: ${percentChangeClose.toFixed(2)}%`,
     );
-    console.log(
-      `Percent change in volume from ${timeSeriesData[i].date} to ${
-        timeSeriesData[i + 1].date
-      }: ${percentChangeVolume.toFixed(2)}%`,
-    );
+
+
   }
 
   return (
     <div>
-      <h1>Stock Details for {ticker} </h1>
+      <h1 className={styles.heading}>Stock Details for {ticker} </h1>
       <h2>Company Overview</h2>
       <p>Company Overview: {companyOverview.Description}</p>
+      <h2>Symbol</h2>
       <p>{companyOverview.Symbol}</p>
       <p>{companyOverview.AssetType}</p>
       <p>{companyOverview.Exchange}</p>
       <p>{companyOverview.Sector}</p>
       <p>{companyOverview.Industry}</p>
       <p>{companyOverview.MarketCapitalization}</p>
+      
+
       <h2>Stock Price History</h2>
       <pre>{JSON.stringify(timeSeriesData, null, 3)}</pre>
     </div>
