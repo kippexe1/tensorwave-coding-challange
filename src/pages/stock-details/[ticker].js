@@ -54,6 +54,10 @@ export default function StockDetails({ companyOverview, timeSeriesData }) {
 
   return (
     <div>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+      </style>
       <h1 className={styles.heading}>Stock Details for {ticker} </h1>
       <h2 className={styles.companyOverviewHeadings}>Company Overview</h2>
       <p className={styles.companyOverviewText}>Company Overview: {companyOverview.Description}</p>
@@ -71,6 +75,7 @@ export default function StockDetails({ companyOverview, timeSeriesData }) {
       <p className={styles.companyOverviewText}>{companyOverview.MarketCapitalization}</p>
 
       <h2 className={styles.stockPriceHistory}>Stock Price History</h2>
+
       <pre>
         <table className={styles.table}>
           <tbody>
