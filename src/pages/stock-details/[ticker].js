@@ -55,20 +55,24 @@ export default function StockDetails({ companyOverview, timeSeriesData }) {
   return (
     <div>
       <h1 className={styles.heading}>Stock Details for {ticker} </h1>
-      <h2>Company Overview</h2>
-      <p>Company Overview: {companyOverview.Description}</p>
-      <h2>Symbol</h2>
-      <p>{companyOverview.Symbol}</p>
-      <p>{companyOverview.AssetType}</p>
-      <p>{companyOverview.Exchange}</p>
-      <p>{companyOverview.Sector}</p>
-      <p>{companyOverview.Industry}</p>
-      <p>{companyOverview.MarketCapitalization}</p>
+      <h2 className={styles.companyOverviewHeadings}>Company Overview</h2>
+      <p className={styles.companyOverviewText}>Company Overview: {companyOverview.Description}</p>
+      <h2 className={styles.companyOverviewHeadings}>Symbol</h2>
+      <p className={styles.companyOverviewText}>{companyOverview.Symbol}</p>
+      <h2 className={styles.companyOverviewHeadings}>Asset Type</h2>
+      <p className={styles.companyOverviewText}>{companyOverview.AssetType}</p>
+      <h2 className={styles.companyOverviewHeadings}>Exchange</h2>
+      <p className={styles.companyOverviewText}>{companyOverview.Exchange}</p>
+      <h2 className={styles.companyOverviewHeadings}>Sector</h2>
+      <p className={styles.companyOverviewText}>{companyOverview.Sector}</p>
+      <h2 className={styles.companyOverviewHeadings}>Industry</h2>
+      <p className={styles.companyOverviewText}>{companyOverview.Industry}</p>
+      <h2 className={styles.companyOverviewHeadings}>Market Capitalization</h2>
+      <p className={styles.companyOverviewText}>{companyOverview.MarketCapitalization}</p>
 
-      <h2>Stock Price History</h2>
+      <h2 className={styles.stockPriceHistory}>Stock Price History</h2>
       <pre>
-        <table border="2">
-          <caption>Stock Details</caption>
+        <table className={styles.table}>
           <tbody>
             <tr>
               <th>Date</th>

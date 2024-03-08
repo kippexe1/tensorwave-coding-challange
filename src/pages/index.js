@@ -3,8 +3,6 @@ import styles from './index.module.css';
 export default function Home() {
   const name = 'SB';
 
-  //let tickers = ['NVDA','IGTX','NIO','AMZN','TSLA','AAPL','GOOG','TM','VWAGY','META','MSFT','JNJ','NVO','JPM','NFLX']
-
   let tickers = [
     {
       symbol: 'NVDA',
