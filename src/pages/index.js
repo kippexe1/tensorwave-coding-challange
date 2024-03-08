@@ -9,7 +9,7 @@ export default function Home() {
       logoUrl: 'https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/235_Nvidia_logo-1024.png',
     },
     {
-      symbol: 'IGTX',
+      symbol: 'INTEL',
       logoUrl:
         'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Intel_logo_%282006-2020%29.svg/1600px-Intel_logo_%282006-2020%29.svg.png',
     },
@@ -24,41 +24,38 @@ export default function Home() {
     },
     {
       symbol: 'TSLA',
-      logoUrl:
-        'https://banner2.cleanpng.com/20190417/eoa/kisspng-logo-font-tesla-inc-typography-car-5cb7a2524c8954.3957115715555385143135.jpg',
+      logoUrl: 'https://pngimg.com/uploads/tesla_logo/tesla_logo_PNG12.png',
     },
     {
-      symbol: 'AAPL',
-      logoUrl: 'https://banner2.cleanpng.com/20171218/f41/apple-logo-png-5a37e212dfda18.3311147015136117949169.jpg',
+      symbol: 'APPL',
+      logoUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apple_logo_grey.svg/1200px-Apple_logo_grey.svg.png',
     },
     {
-      symbol: 'GOOG',
-      logoUrl:
-        'https://banner2.cleanpng.com/20180723/btg/kisspng-google-logo-google-search-google-images-g-suite-google-adwords-5b5695e47fdc94.0743248315324011245237.jpg',
+      symbol: 'GOOGL',
+      logoUrl: 'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png',
     },
     {
       symbol: 'TM',
-      logoUrl:
-        'https://banner2.cleanpng.com/20180820/tl/kisspng-toyota-86-car-logo-general-motors--5b7b8e3e0831e0.5485634815348239980336.jpg',
+      logoUrl: 'https://i.pinimg.com/originals/39/25/63/392563e99c6282e81c4d3f094d6f87fd.png',
     },
     {
       symbol: 'VWAGY',
       logoUrl:
-        'https://banner2.cleanpng.com/20180323/cbq/kisspng-volkswagen-group-car-volkswagen-beetle-volkswagen-cars-logo-brands-5ab51e3044c900.9677457215218191842818.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/1024px-Volkswagen_logo_2019.svg.png',
     },
     {
       symbol: 'META',
-      logoUrl: 'https://i.pinimg.com/originals/50/de/9c/50de9c655bb90531b36c68f8f2ba3686.png',
+      logoUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Meta-Logo.png/1600px-Meta-Logo.png?20211104123859',
     },
     {
       symbol: 'MSFT',
-      logoUrl:
-        'https://p7.hiclipart.com/preview/315/451/665/microsoft-dynamics-partnership-company-nasdaq-msft-lenovo-logo.jpg',
+      logoUrl: 'https://evergreenleadership.com/wp-content/uploads/2019/05/microsoft-logo-png-transparent-20.png',
     },
     {
       symbol: 'JNJ',
-      logoUrl:
-        'https://banner2.cleanpng.com/20180202/thq/kisspng-johnson-johnson-company-medical-device-organizat-johnson-amp-johns-logo-5a73f100158700.9935580015175477760882.jpg',
+      logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Johnson_and_Johnson_Logo.svg',
     },
     {
       symbol: 'NVO',
@@ -66,20 +63,25 @@ export default function Home() {
     },
     {
       symbol: 'JPM',
-      logoUrl: 'https://cdn.freebiesupply.com/logos/large/2x/jpmorgan-logo-png-transparent.png',
+      logoUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/J_P_Morgan_Logo_2008_1.svg/1200px-J_P_Morgan_Logo_2008_1.svg.png',
     },
     {
       symbol: 'NFLX',
-      logoUrl: 'https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/235_Nvidia_logo-1024.png',
+      logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png',
     },
   ];
 
-  return tickers.map((ticker) => {
-    return (
-      <a href={`/stock-details/${ticker.symbol}`}>
-        <p className={styles.ticker}>{ticker.symbol}</p>
-        <img src={ticker.logoUrl} width="45px" />
-      </a>
-    );
-  });
+  return (
+    <div className={styles.cardContainer}>
+      {tickers.map((ticker) => (
+        <div className={styles.card} key={ticker.symbol}>
+          <a href={`/stock-details/${ticker.symbol}`}>
+            <img src={ticker.logoUrl} alt="Company Logo" />
+            <p className={styles.ticker}>{ticker.symbol}</p>
+          </a>
+        </div>
+      ))}
+    </div>
+  );
 }

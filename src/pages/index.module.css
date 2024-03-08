@@ -1,8 +1,31 @@
-.body {
-  font-family: 'Barlow Condensed';
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 120px; /* Adjust the width as needed */
+  margin: 10px; /* Adjust the margin as needed */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card img {
+  max-width: 100%;
 }
 
 .ticker {
-  font-family: Barlow Condensed;
-  font-size: 50;
+  margin-top: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.symbol {
+  font-size: 20px;
 }
