@@ -58,6 +58,7 @@ export default function StockDetails({ companyOverview, stockPriceHistory }) {
   }
 
   return (
+   <body>
     <div>
       <h1 className={styles.heading}>Stock Details for {ticker} </h1>
       <h2>Company Overview</h2>
@@ -70,11 +71,32 @@ export default function StockDetails({ companyOverview, stockPriceHistory }) {
       <p>{companyOverview.Industry}</p>
       <p>{companyOverview.MarketCapitalization}</p>
       
-
       <h2>Stock Price History</h2>
-      <pre>{JSON.stringify(timeSeriesData, null, 3)}</pre>
+      <pre>
+  <table border="2" > 
+    <caption>Stock Details</caption>
+    <tbody>
+   {timeSeriesData.map((data) => (
+    <tr>
+      <td>{data.data}</td>
+      
+      <td><th>Date</th>{data.date}</td>
+      <th><td>Volume</td>{data.volume}</th>
+      <td><th>% Change</th>{data.percentChangeClose}</td>
+      <td><th>Close</th>{data.close}</td>
+      
+
+    </tr>
+  ))}
+    </tbody>
+  </table>
+</pre>
+      
+ 
     </div>
-  );
+
+    </body> 
+)
 }
 
 // Show the company symbol, asset type, name, description, exchange,
