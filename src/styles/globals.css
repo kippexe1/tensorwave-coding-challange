@@ -1,17 +1,13 @@
 body {
   background-color: rgb(43, 101, 105);
-  margin: 0;
+  font-family: 'Barlow Condensed';
+  margin: 100px;
   padding: 0;
-  height: 100vh; /* Make the body take up the full viewport height */
-  background: linear-gradient(to right, #a9aaaa, #126d97);
-  font-family: 'Oswald';
+  height: 100vh;
+  background: linear-gradient(to right, #a6a0ae, #7d10b4);
+  font-family: 'Barlow Condensed';
   font-size: 25px;
   width: 100%;
   text-align: left;
   text-size-adjust: 50;
-}
-
-.symbol {
-  font-family: 'Oswald';
-  font-size: 5px;
 }

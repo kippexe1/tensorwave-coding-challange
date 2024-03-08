@@ -1,7 +1,7 @@
 .heading {
   font-family: Barlow Condensed;
   font-size: 50px;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .timeSeriesData {
@@ -9,26 +9,29 @@
   font-size: 20px;
   color: #000000;
   font-family: Barlow Condensed;
-
+  margin-left: 20px;
   width: 100%;
   text-align: center;
   text-size-adjust: 100;
 }
 .table {
   font-size: 16px;
+
   color: #000000;
   font-family: jura;
   font-family: Barlow Condensed;
   width: 100%;
   text-align: center;
   text-size-adjust: 100;
+  margin-left: -60px;
+  margin-right: 5px;
 }
 
 .companyOverviewHeadings {
   color: #000000;
   font-family: Barlow Condensed;
-  margin-bottom: 0px;
-  margin-left: 10px;
+  margin-bottom: 20px;
+  margin-left: 5px;
 }
 
 .companyOverviewText {
@@ -37,7 +40,7 @@
 
   margin-bottom: 20px;
   margin-top: 15px;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .stockPriceHistory {
@@ -45,4 +48,6 @@
   font-family: Barlow Condensed;
   font-size: 40px;
   text-align: center;
+  margin-right: 0px;
+  margin-left: 0px;
 }
