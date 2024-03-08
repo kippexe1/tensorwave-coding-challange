@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
-import styles from './[ticker].module.css'
-
+import styles from './[ticker].module.css';
 
 export async function getServerSideProps(context) {
   // Fetch data from external APIpmp
@@ -18,47 +17,42 @@ export async function getServerSideProps(context) {
 
   // Pass data to the page via props
 
-  return { props: { companyOverview, stockPriceHistory } };
-}
-
-export default function StockDetails({ companyOverview, stockPriceHistory }) {
-  console.log(companyOverview);
-  console.log(stockPriceHistory);
-
-  const router = useRouter();
-  const { ticker } = router.query;
   let timeSeriesData = stockPriceHistory['Time Series (Daily)'];
   timeSeriesData = Object.keys(timeSeriesData).map((date) => {
     return {
       date: date,
       close: timeSeriesData[date]['4. close'],
       volume: timeSeriesData[date]['5. volume'],
-    
     };
   });
-
-
-
-  //calculate, map through, time series data valueable, +1 , -1 = array
 
   for (let i = 0; i < timeSeriesData.length - 1; i++) {
     const currentClose = parseFloat(timeSeriesData[i].close);
     const previousClose = parseFloat(timeSeriesData[i + 1].close);
     const percentChangeClose = ((currentClose - previousClose) / previousClose) * 100;
 
-  timeSeriesData[i].percentChangeClose=percentChangeClose  
+    timeSeriesData[i].percentChangeClose = percentChangeClose;
 
     console.log(
       `Percent change in close price from ${timeSeriesData[i].date} to ${
         timeSeriesData[i + 1].date
       }: ${percentChangeClose.toFixed(2)}%`,
     );
-
-
   }
 
+  return { props: { companyOverview, timeSeriesData } };
+}
+
+export default function StockDetails({ companyOverview, timeSeriesData }) {
+  console.log(companyOverview);
+  console.log(timeSeriesData);
+
+  const router = useRouter();
+  const { ticker } = router.query;
+
+  //calculate, map through, time series data valueable, +1 , -1 = array
+
   return (
-   <body>
     <div>
       <h1 className={styles.heading}>Stock Details for {ticker} </h1>
       <h2>Company Overview</h2>
@@ -70,33 +64,33 @@ export default function StockDetails({ companyOverview, stockPriceHistory }) {
       <p>{companyOverview.Sector}</p>
       <p>{companyOverview.Industry}</p>
       <p>{companyOverview.MarketCapitalization}</p>
-      
+
       <h2>Stock Price History</h2>
       <pre>
-  <table border="2" > 
-    <caption>Stock Details</caption>
-    <tbody>
-   {timeSeriesData.map((data) => (
-    <tr>
-      <td>{data.data}</td>
-      
-      <td><th>Date</th>{data.date}</td>
-      <th><td>Volume</td>{data.volume}</th>
-      <td><th>% Change</th>{data.percentChangeClose}</td>
-      <td><th>Close</th>{data.close}</td>
-      
+        <table border="2">
+          <caption>Stock Details</caption>
+          <tbody>
+            <tr>
+              <th>Date</th>
+              <th>Volume</th>
+              <th>% Change</th>
+              <th>Close</th>
+            </tr>
 
-    </tr>
-  ))}
-    </tbody>
-  </table>
-</pre>
-      
- 
+            {timeSeriesData?.length > 0 &&
+              timeSeriesData.map((data) => (
+                <tr>
+                  <td>{data.date}</td>
+                  <td>{data.volume}</td>
+                  <td>{data.percentChangeClose}</td>
+                  <td>{data.close}</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </pre>
     </div>
-
-    </body> 
-)
+  );
 }
 
 // Show the company symbol, asset type, name, description, exchange,
