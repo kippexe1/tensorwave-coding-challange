@@ -4,11 +4,13 @@ import styles from './[ticker].module.css';
 export async function getServerSideProps(context) {
   // Fetch data from external API
 
-  const companyResponse = await fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo`);
+  const companyResponse = await fetch(
+    `https://www.alphavantage.co/query?function=OVERVIEW&symbol=NVDA&apikey=JTRQZDDNXAOLX046`,
+  );
   const companyOverview = await companyResponse.json();
 
   const stockHistoryResponse = await fetch(
-    `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&outputsize=full&apikey=demo`,
+    `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NVDA&outputsize=full&apikey=JTRQZDDNXAOLX046`,
   );
   const stockPriceHistory = await stockHistoryResponse.json();
 
