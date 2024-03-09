@@ -63,6 +63,7 @@ export default function StockDetails({ companyOverview, timeSeriesData }) {
 
       <div className={styles.section}>
         <h2 className={styles.subheading}>Stock Price History</h2>
+        <div className={styles.tableContainer}></div>
         <table className={styles.table}>
           <thead>
             <tr>

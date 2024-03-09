@@ -4,13 +4,13 @@
 }
 
 body {
-  background-color: rgb(43, 101, 105);
+  background-color: rgb(59, 159, 167);
   font-family: 'Adv';
   margin: 100px;
   margin-left: 0px;
   padding: 0;
   height: 100vh;
-  background: linear-gradient(to right, #a6a0ae, #a05ac3);
+  background: linear-gradient(to right, #1e1555, #16074ee1);
   font-family: 'Barlow Condensed';
   font-size: 25px;
   width: 100%;

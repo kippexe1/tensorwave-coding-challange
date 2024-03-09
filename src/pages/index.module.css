@@ -9,30 +9,31 @@
 }
 
 .card {
-  width: 200px; /* Adjust the width as needed */
-  height: 220px; /* Adjust the height as needed */
-  margin: 20px; /* Adjust the margin as needed */
-  padding: 25px;
+  width: 150px;
+  height: 150px;
+  margin: 20px;
+  padding: 15px;
   border: 1px solid #282474;
-  border-radius: 20px;
-  background-color: #f0f0f0;
+  border-radius: 60px;
+  background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
   cursor: pointer;
 }
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-35px);
+  box-shadow: 1 12px 12px rgba(179, 45, 45, 0.2);
 }
 .card img {
-  width: 100%;
-  height: auto;
+  width: 50%;
+  height: 10;
+  width: auto;
   border-radius: 10px;
 }
 
 .card p {
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 0px;
   color: #333;
 }
 
@@ -51,12 +52,13 @@
 }
 
 .ticker {
-  margin-top: 50px;
-  font-size: 25px;
-  font-family: Arial, sans-serif;
-  text-align: center;
+  margin-top: 1px;
+  font-size: 5px;
+  font-family: adv;
+  text-align: top;
 }
 
-.symbol {
-  font-size: 20px;
+.image {
+  width: 10px;
+  height: -20px;
 }

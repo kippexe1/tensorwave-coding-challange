@@ -28,8 +28,7 @@ export default function Home() {
     },
     {
       symbol: 'APPL',
-      logoUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apple_logo_grey.svg/1200px-Apple_logo_grey.svg.png',
+      logoUrl: 'https://pngfre.com/wp-content/uploads/apple-logo-13-1024x1024.png',
     },
     {
       symbol: 'GOOGL',
@@ -55,7 +54,7 @@ export default function Home() {
     },
     {
       symbol: 'JNJ',
-      logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Johnson_and_Johnson_Logo.svg',
+      logoUrl: 'https://seeklogo.com/images/J/johnson-johnson-logo-4ECAED3257-seeklogo.com.png',
     },
     {
       symbol: 'NVO',
@@ -63,12 +62,12 @@ export default function Home() {
     },
     {
       symbol: 'JPM',
-      logoUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/J_P_Morgan_Logo_2008_1.svg/1200px-J_P_Morgan_Logo_2008_1.svg.png',
+      logoUrl: 'https://media2.vault.com/14347007/jp-morgan.png',
     },
     {
       symbol: 'NFLX',
-      logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png',
+      logoUrl:
+        'https://static.vecteezy.com/system/resources/previews/019/956/198/original/netflix-transparent-netflix-free-free-png.png',
     },
   ];
 
@@ -78,7 +77,8 @@ export default function Home() {
         {tickers.map((ticker) => (
           <div className={styles.card} key={ticker.symbol}>
             <a href={`/stock-details/${ticker.symbol}`}>
-              <img src={ticker.logoUrl} alt="Company Logo" />
+              <img src={ticker.logoUrl} alt="Company Logo" className={styles.image} />
+
               <p className={styles.ticker} style={{ fontFamily: 'Arial, sans-serif' }}>
                 {ticker.symbol}
               </p>
