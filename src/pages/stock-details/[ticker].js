@@ -2,9 +2,7 @@ import { useRouter } from 'next/router';
 import styles from './[ticker].module.css';
 
 export async function getServerSideProps(context) {
-  // Fetch data from external APIpmp
-
-  console.log('sb', context.params.ticker);
+  // Fetch data from external API
 
   const companyResponse = await fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo`);
   const companyOverview = await companyResponse.json();
@@ -13,91 +11,79 @@ export async function getServerSideProps(context) {
     `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&outputsize=full&apikey=demo`,
   );
   const stockPriceHistory = await stockHistoryResponse.json();
-  // ${context.params.ticker}
-
-  // Pass data to the page via props
 
   let timeSeriesData = stockPriceHistory['Time Series (Daily)'];
-  timeSeriesData = Object.keys(timeSeriesData).map((date) => {
-    return {
-      date: date,
-      close: timeSeriesData[date]['4. close'],
-      volume: timeSeriesData[date]['5. volume'],
-    };
-  });
+  timeSeriesData = Object.keys(timeSeriesData).map((date) => ({
+    date: date,
+    close: timeSeriesData[date]['4. close'],
+    volume: timeSeriesData[date]['5. volume'],
+  }));
 
   for (let i = 0; i < timeSeriesData.length - 1; i++) {
     const currentClose = parseFloat(timeSeriesData[i].close);
     const previousClose = parseFloat(timeSeriesData[i + 1].close);
     const percentChangeClose = ((currentClose - previousClose) / previousClose) * 100;
 
-    timeSeriesData[i].percentChangeClose = percentChangeClose;
-
-    console.log(
-      `Percent change in close price from ${timeSeriesData[i].date} to ${
-        timeSeriesData[i + 1].date
-      }: ${percentChangeClose.toFixed(2)}%`,
-    );
+    timeSeriesData[i].percentChangeClose = percentChangeClose.toFixed(2) + '%';
   }
 
   return { props: { companyOverview, timeSeriesData } };
 }
 
 export default function StockDetails({ companyOverview, timeSeriesData }) {
-  console.log(companyOverview);
-  console.log(timeSeriesData);
-
   const router = useRouter();
   const { ticker } = router.query;
 
-  //calculate, map through, time series data valueable, +1 , -1 = array
-
   return (
-    <div>
-      <h1 className={styles.heading}>Stock Details for {ticker} </h1>
-      <h2 className={styles.companyOverviewHeadings}>Company Overview</h2>
-      <p className={styles.companyOverviewText}>Company Overview: {companyOverview.Description}</p>
-      <h2 className={styles.companyOverviewHeadings}>Symbol</h2>
-      <p className={styles.companyOverviewText}>{companyOverview.Symbol}</p>
-      <h2 className={styles.companyOverviewHeadings}>Asset Type</h2>
-      <p className={styles.companyOverviewText}>{companyOverview.AssetType}</p>
-      <h2 className={styles.companyOverviewHeadings}>Exchange</h2>
-      <p className={styles.companyOverviewText}>{companyOverview.Exchange}</p>
-      <h2 className={styles.companyOverviewHeadings}>Sector</h2>
-      <p className={styles.companyOverviewText}>{companyOverview.Sector}</p>
-      <h2 className={styles.companyOverviewHeadings}>Industry</h2>
-      <p className={styles.companyOverviewText}>{companyOverview.Industry}</p>
-      <h2 className={styles.companyOverviewHeadings}>Market Capitalization</h2>
-      <p className={styles.companyOverviewText}>{companyOverview.MarketCapitalization}</p>
-      <h2 className={styles.stockPriceHistory}>Stock Price History</h2>
-      <pre>
+    <div className={styles.container}>
+      <h1 className={styles.heading}>Stock Details for {ticker}</h1>
+
+      <div className={styles.section}>
+        <h2 className={styles.subheading}>Company Overview</h2>
+        <p>{companyOverview?.Description || 'N/A'}</p>
+        <p>
+          <strong>Symbol:</strong> {companyOverview?.Symbol || 'N/A'}
+        </p>
+        <p>
+          <strong>Asset Type:</strong> {companyOverview?.AssetType || 'N/A'}
+        </p>
+        <p>
+          <strong>Exchange:</strong> {companyOverview?.Exchange || 'N/A'}
+        </p>
+        <p>
+          <strong>Sector:</strong> {companyOverview?.Sector || 'N/A'}
+        </p>
+        <p>
+          <strong>Industry:</strong> {companyOverview?.Industry || 'N/A'}
+        </p>
+        <p>
+          <strong>Market Capitalization:</strong> {companyOverview?.MarketCapitalization || 'N/A'}
+        </p>
+      </div>
+
+      <div className={styles.section}>
+        <h2 className={styles.subheading}>Stock Price History</h2>
         <table className={styles.table}>
-          <tbody>
+          <thead>
             <tr>
               <th>Date</th>
               <th>Volume</th>
               <th>% Change</th>
               <th>Close</th>
             </tr>
-
-            {timeSeriesData?.length > 0 &&
-              timeSeriesData.map((data) => (
-                <tr>
-                  <td>{data.date}</td>
-                  <td>{data.volume}</td>
-                  <td>{data.percentChangeClose}</td>
-                  <td>{data.close}</td>
-                </tr>
-              ))}
+          </thead>
+          <tbody>
+            {timeSeriesData?.map((data, index) => (
+              <tr key={index}>
+                <td>{data.date}</td>
+                <td>{data.volume}</td>
+                <td>{data.percentChangeClose}</td>
+                <td>{data.close}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
-      </pre>
+      </div>
     </div>
   );
 }
-
-// Show the company symbol, asset type, name, description, exchange,
-// sector, industry and market capitalization. If any of this information is not
-// available then display “N/A” instead
-// For each historical price item show the following: date, close price, volume
-// and percentage change in price from the previous day

@@ -73,15 +73,19 @@ export default function Home() {
   ];
 
   return (
-    <div className={styles.cardContainer}>
-      {tickers.map((ticker) => (
-        <div className={styles.card} key={ticker.symbol}>
-          <a href={`/stock-details/${ticker.symbol}`}>
-            <img src={ticker.logoUrl} alt="Company Logo" />
-            <p className={styles.ticker}>{ticker.symbol}</p>
-          </a>
-        </div>
-      ))}
+    <div>
+      <div className={styles.cardContainer}>
+        {tickers.map((ticker) => (
+          <div className={styles.card} key={ticker.symbol}>
+            <a href={`/stock-details/${ticker.symbol}`}>
+              <img src={ticker.logoUrl} alt="Company Logo" />
+              <p className={styles.ticker} style={{ fontFamily: 'Arial, sans-serif' }}>
+                {ticker.symbol}
+              </p>
+            </a>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

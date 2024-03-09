@@ -1,10 +1,16 @@
+@font-face {
+  font-family: Adv;
+  src: url(../styles/Oswald-VariableFont_wght.ttf);
+}
+
 body {
   background-color: rgb(43, 101, 105);
-  font-family: 'Barlow Condensed';
+  font-family: 'Adv';
   margin: 100px;
+  margin-left: 0px;
   padding: 0;
   height: 100vh;
-  background: linear-gradient(to right, #a6a0ae, #7d10b4);
+  background: linear-gradient(to right, #a6a0ae, #a05ac3);
   font-family: 'Barlow Condensed';
   font-size: 25px;
   width: 100%;

@@ -1,14 +1,13 @@
 .heading {
-  font-family: Barlow Condensed;
+  font-family: 'Adv';
   font-size: 50px;
   margin-left: 5px;
 }
 
 .timeSeriesData {
-  font-family: Barlow Condensed;
+  font-family: 'Adv';
   font-size: 20px;
   color: #000000;
-  font-family: Barlow Condensed;
   margin-left: 20px;
   width: 100%;
   text-align: center;
@@ -16,10 +15,8 @@
 }
 .table {
   font-size: 16px;
-
   color: #000000;
-  font-family: jura;
-  font-family: Barlow Condensed;
+  font-family: 'Adv';
   width: 100%;
   text-align: center;
   text-size-adjust: 100;
@@ -29,15 +26,14 @@
 
 .companyOverviewHeadings {
   color: #000000;
-  font-family: Barlow Condensed;
+  font-family: 'Adv';
   margin-bottom: 20px;
   margin-left: 5px;
 }
 
 .companyOverviewText {
-  font-family: Barlow Condensed;
-  color: #000000;
-
+  font-family: 'Adv';
+  color: #5e4c4c;
   margin-bottom: 20px;
   margin-top: 15px;
   margin-left: 5px;
@@ -45,9 +41,60 @@
 
 .stockPriceHistory {
   color: #000000;
-  font-family: Barlow Condensed;
+  font-family: 'Adv';
   font-size: 40px;
   text-align: center;
-  margin-right: 0px;
+  margin-right: 10px;
   margin-left: 0px;
+}
+
+.container {
+  font-family: 'Adv';
+  margin: 20px;
+}
+
+.heading {
+  font-family: 'Adv';
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.section {
+  font-family: 'Adv';
+  margin-bottom: 40px;
+}
+
+.subheading {
+  font-family: 'Adv';
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.table {
+  font-family: 'Adv';
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  font-family: 'Adv';
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.table th {
+  font-family: 'Adv';
+  font-weight: bold;
+  text-align: left;
+}
+
+.table td {
+  font-family: 'Adv';
+  text-align: center;
+}
+
+.table tbody tr:nth-child(even) {
+  font-family: 'Adv';
+  background-color: #8d6998;
 }
