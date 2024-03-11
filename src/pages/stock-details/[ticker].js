@@ -5,12 +5,12 @@ export async function getServerSideProps(context) {
   // Fetch data from external API
 
   const companyResponse = await fetch(
-    `https://www.alphavantage.co/query?function=OVERVIEW&symbol=NVDA&apikey=JTRQZDDNXAOLX046`,
+    `https://www.alphavantage.co/query?%20function=TIME_SERIES_DAILY&symbol=${context.params.ticker}&outputsize=full&apikey=demo`,
   );
   const companyOverview = await companyResponse.json();
 
   const stockHistoryResponse = await fetch(
-    `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NVDA&outputsize=full&apikey=JTRQZDDNXAOLX046`,
+    `https://www.alphavantage.co/query?%20function=TIME_SERIES_DAILY&symbol=${context.params.ticker}&outputsize=full&apikey=demo`,
   );
   const stockPriceHistory = await stockHistoryResponse.json();
 
